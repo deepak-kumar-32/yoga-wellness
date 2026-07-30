@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vrikshasana — Tree Pose | Yoga Wellness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ 
+<style>
+:root{
+    --bg-deep: #0a0f1e;
+    --bg-panel: #121a2e;
+    --bg-panel-alt: #0e1526;
+    --accent-teal: #38bdf8;
+    --accent-teal-soft: rgba(56,189,248,0.15);
+    --accent-gold: #f6ad37;
+    --accent-gold-soft: rgba(246,173,55,0.15);
+    --text-main: #f1f5f9;
+    --text-muted: #93a1b8;
+    --border-soft: rgba(148,163,184,0.14);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Poppins', sans-serif;
+    --nav-bg: rgba(10,15,30,0.75);
+    --nav-bg-scrolled: rgba(10,15,30,0.95);
+}
+ 
+body[data-theme="light"]{
+    --bg-deep: #faf7f1;
+    --bg-panel: #ffffff;
+    --bg-panel-alt: #f2ede2;
+    --accent-teal: #0891b2;
+    --accent-teal-soft: rgba(8,145,178,0.12);
+    --accent-gold: #d97706;
+    --accent-gold-soft: rgba(217,119,6,0.12);
+    --text-main: #1e2433;
+    --text-muted: #64708a;
+    --border-soft: rgba(30,36,51,0.12);
+    --nav-bg: rgba(250,247,241,0.8);
+    --nav-bg-scrolled: rgba(250,247,241,0.96);
+}
+ 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+ 
+html{ scroll-behavior:smooth; }
+ 
+body{
+    background:var(--bg-deep);
+    color:var(--text-main);
+    font-family:var(--font-body);
+    transition:background 0.4s ease, color 0.4s ease;
+}
+ 
+h1,h2,.brand{ font-family:var(--font-display); font-weight:600; }
+a{ color:inherit; }
+img{ max-width:100%; display:block; }
+ 
+.eyebrow{
+    display:inline-block;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--accent-gold);
+    margin-bottom:12px;
+    font-weight:600;
+}
+ 
+/* ---------- Navbar ---------- */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 50px;
+    background:var(--nav-bg);
+    backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid var(--border-soft);
+    transition:padding 0.3s ease, background 0.3s ease;
+}
+ 
+nav.scrolled{
+    padding:10px 50px;
+    background:var(--nav-bg-scrolled);
+}
+ 
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:20px;
+    text-decoration:none;
+    color:var(--text-main);
+}
+ 
+.brand span{ color:var(--accent-teal); }
+.brand svg{ width:26px; height:26px; }
+ 
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+ 
+.back-link{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:var(--text-muted);
+    font-size:14px;
+    padding:9px 16px;
+    border-radius:20px;
+    border:1px solid var(--border-soft);
+    transition:0.25s ease;
+}
+ 
+.back-link:hover{
+    color:var(--accent-teal);
+    border-color:var(--accent-teal);
+}
+ 
+.back-link svg{ width:16px; height:16px; }
+ 
+.theme-toggle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--border-soft);
+    background:var(--bg-panel);
+    color:var(--accent-teal);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:border-color 0.25s ease, transform 0.35s ease, background 0.4s ease;
+    flex-shrink:0;
+}
+ 
+.theme-toggle:hover{
+    border-color:var(--accent-teal);
+    transform:rotate(15deg);
+}
+ 
+.theme-toggle svg{ width:19px; height:19px; }
+.theme-toggle .icon-moon{ display:none; }
+body[data-theme="light"] .theme-toggle .icon-sun{ display:none; }
+body[data-theme="light"] .theme-toggle .icon-moon{ display:block; }
+ 
+/* ---------- Language toggle ---------- */
+.lang-toggle{
+    display:flex;
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:20px;
+    padding:3px;
+}
+ 
+.lang-toggle button{
+    border:none;
+    background:transparent;
+    color:var(--text-muted);
+    padding:7px 14px;
+    border-radius:18px;
+    cursor:pointer;
+    font-family:var(--font-body);
+    font-size:13px;
+    font-weight:600;
+    transition:0.25s ease;
+}
+ 
+.lang-toggle button.active{
+    background:var(--accent-teal);
+    color:#04121c;
+}
+ 
+/* ---------- Header ---------- */
+.page-header{
+    text-align:center;
+    padding:80px 24px 60px;
+    background:
+        radial-gradient(circle at 50% 0%, var(--accent-teal-soft), transparent 60%),
+        var(--bg-deep);
+}
+ 
+.page-header h1{
+    font-size:clamp(32px,5vw,52px);
+    margin-bottom:14px;
+}
+ 
+.page-header h1 em{
+    font-style:italic;
+    color:var(--accent-teal);
+}
+ 
+.page-header p{
+    color:var(--text-muted);
+    font-size:17px;
+    max-width:560px;
+    margin:0 auto;
+}
+ 
+/* ---------- Grid Section ---------- */
+.pose-section{
+    padding:20px 50px 90px;
+}
+ 
+.wrapper{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:26px;
+    max-width:1200px;
+    margin:0 auto;
+}
+ 
+.container{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:18px;
+    overflow:hidden;
+    text-align:center;
+    transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    opacity:0;
+    transform:translateY(24px);
+    animation:cardIn 0.6s ease forwards;
+}
+ 
+@keyframes cardIn{
+    to{ opacity:1; transform:translateY(0); }
+}
+ 
+.container:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.28);
+    border-color:var(--accent-teal);
+}
+ 
+.img-wrap{
+    position:relative;
+    height:200px;
+    overflow:hidden;
+}
+ 
+.img-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.5s ease;
+}
+ 
+.container:hover .img-wrap img{
+    transform:scale(1.08);
+}
+ 
+.pose-number{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:rgba(10,15,30,0.65);
+    backdrop-filter:blur(4px);
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    padding:5px 11px;
+    border-radius:20px;
+    letter-spacing:1px;
+}
+ 
+.card-body{
+    padding:20px 18px 24px;
+}
+ 
+.card-body a{
+    display:block;
+    font-size:18px;
+    font-weight:600;
+    text-decoration:none;
+    color:var(--text-main);
+    margin-bottom:8px;
+    transition:color 0.25s ease;
+}
+ 
+.card-body a:hover{
+    color:var(--accent-teal);
+}
+ 
+.card-body .level{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--accent-gold);
+    background:var(--accent-gold-soft);
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:600;
+}
+ 
+/* ---------- Back home ---------- */
+.back-home{
+    display:flex;
+    justify-content:center;
+    padding:0 24px 90px;
+}
+ 
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 30px;
+    background:var(--accent-teal);
+    color:#04121c;
+    border:none;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+ 
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(56,189,248,0.3);
+}
+ 
+/* ---------- Footer ---------- */
+footer{
+    text-align:center;
+    padding:24px;
+    border-top:1px solid var(--border-soft);
+    color:var(--text-muted);
+    font-size:13px;
+    background:var(--bg-panel-alt);
+}
+ 
+/* ---------- Responsive ---------- */
+@media (max-width:768px){
+    nav{ padding:14px 20px; }
+    .pose-section{ padding:20px 20px 70px; }
+    .page-header{ padding:60px 20px 44px; }
+    .brand span.brand-text{ display:none; }
+}
+ 
+/* ---------- Pose Detail Page ---------- */
+.pose-hero{
+    max-width:1000px;
+    margin:20px auto 0;
+    padding:0 24px;
+}
+ 
+.pose-hero-img{
+    position:relative;
+    border-radius:24px;
+    overflow:hidden;
+    height:340px;
+}
+ 
+.pose-hero-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+ 
+.pose-hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(0deg, rgba(10,15,30,0.85), transparent 55%);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:30px;
+}
+ 
+.pose-hero-overlay h1{
+    color:#fff;
+    font-size:clamp(28px,4.5vw,42px);
+    margin-bottom:4px;
+}
+ 
+.pose-hero-overlay .sanskrit{
+    color:#e2e8f0;
+    font-size:17px;
+    font-family:var(--font-display);
+    font-style:italic;
+}
+ 
+.meta-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin:22px 0 10px;
+}
+ 
+.meta-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    padding:9px 16px;
+    border-radius:20px;
+    font-size:13px;
+    color:var(--text-muted);
+}
+ 
+.meta-chip svg{
+    width:15px;
+    height:15px;
+    color:var(--accent-teal);
+}
+ 
+.meta-chip strong{
+    color:var(--text-main);
+    font-weight:600;
+}
+ 
+/* Detail sections */
+.detail-wrap{
+    max-width:1000px;
+    margin:0 auto;
+    padding:30px 24px 90px;
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:40px;
+    align-items:start;
+}
+ 
+.detail-main section{
+    padding:0;
+    text-align:left;
+    margin-bottom:44px;
+}
+ 
+.detail-main h2{
+    font-size:24px;
+    margin-bottom:16px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+ 
+.detail-main h2 svg{
+    width:22px;
+    height:22px;
+    color:var(--accent-teal);
+}
+ 
+.detail-main > section > p{
+    color:var(--text-muted);
+    line-height:1.8;
+    font-size:16px;
+}
+ 
+.step-list{
+    list-style:none;
+    counter-reset:step;
+}
+ 
+.step-list li{
+    counter-increment:step;
+    display:flex;
+    gap:16px;
+    padding:16px 0;
+    border-bottom:1px solid var(--border-soft);
+    color:var(--text-muted);
+    line-height:1.7;
+    font-size:15px;
+}
+ 
+.step-list li:last-child{
+    border-bottom:none;
+}
+ 
+.step-list li::before{
+    content:counter(step);
+    flex-shrink:0;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--accent-teal-soft);
+    color:var(--accent-teal);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:14px;
+}
+ 
+.benefit-list{
+    list-style:none;
+    display:grid;
+    gap:12px;
+}
+ 
+.benefit-list li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    color:var(--text-muted);
+    font-size:15px;
+    line-height:1.6;
+}
+ 
+.benefit-list li svg{
+    width:20px;
+    height:20px;
+    color:var(--accent-teal);
+    flex-shrink:0;
+    margin-top:2px;
+}
+ 
+.precaution-box{
+    background:var(--accent-gold-soft);
+    border:1px solid rgba(246,173,55,0.3);
+    border-radius:16px;
+    padding:22px;
+}
+ 
+.precaution-box h2{
+    color:var(--accent-gold);
+}
+ 
+.precaution-box ul{
+    list-style:none;
+    display:grid;
+    gap:10px;
+}
+ 
+.precaution-box li{
+    display:flex;
+    gap:10px;
+    color:var(--text-muted);
+    font-size:14px;
+    line-height:1.6;
+}
+ 
+.precaution-box li::before{
+    content:"⚠";
+    color:var(--accent-gold);
+    flex-shrink:0;
+}
+ 
+/* Sidebar */
+.detail-side{
+    position:sticky;
+    top:100px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+ 
+.side-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:18px;
+    padding:24px;
+}
+ 
+.side-card h3{
+    font-size:16px;
+    margin-bottom:14px;
+}
+ 
+.variation-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid var(--border-soft);
+    font-size:14px;
+    color:var(--text-muted);
+}
+ 
+.variation-item:last-child{
+    border-bottom:none;
+}
+ 
+.variation-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--accent-teal);
+    flex-shrink:0;
+}
+ 
+.related-pose{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 0;
+    text-decoration:none;
+    color:var(--text-main);
+    border-bottom:1px solid var(--border-soft);
+    transition:color 0.25s ease;
+}
+ 
+.related-pose:last-child{
+    border-bottom:none;
+}
+ 
+.related-pose:hover{
+    color:var(--accent-teal);
+}
+ 
+.related-pose img{
+    width:48px;
+    height:48px;
+    border-radius:10px;
+    object-fit:cover;
+    flex-shrink:0;
+}
+ 
+.related-pose span{
+    font-size:14px;
+    font-weight:500;
+}
+ 
+@media (max-width:800px){
+    .detail-wrap{ grid-template-columns:1fr; }
+    .detail-side{ position:static; }
+    .pose-hero-img{ height:240px; }
+}
+</style>
+ 
+</head>
+<body>
+ 
+<!-- Navbar -->
+<nav id="navbar">
+    <a href="index.html" class="brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2.4"/><path d="M12 8.4v4.2M12 12.6l-5 6M12 12.6l5 6M7 15h10"/></svg>
+        <span class="brand-text">Yoga<span>Wellness</span></span>
+    </a>
+ 
+    <div class="nav-actions">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span data-lang="en">Back to Home</span>
+            <span data-lang="hi" style="display:none;">होम पर जाएँ</span>
+        </a>
+        <div class="lang-toggle">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="hi">हिं</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1110.2 4a6.8 6.8 0 009.8 10.5z"/></svg>
+        </button>
+    </div>
+</nav>
+ 
+<!-- Header -->
+<!-- Pose Hero -->
+<div class="pose-hero">
+<div class="pose-hero-img">
+        <img src="treepose.webp" alt="Tree Pose">
+        <div class="pose-hero-overlay">
+            <h1 data-lang="en">Tree Pose</h1>
+            <h1 data-lang="hi" style="display:none;">वृक्षासन</h1>
+            <span class="sanskrit" data-lang="en">Vrikshasana — वृक्षासन</span>
+            <span class="sanskrit" data-lang="hi" style="display:none;">Tree Pose</span>
+        </div>
+    </div>
+ 
+<div class="meta-chips">
+        <div class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M4 8c4 0 4 4 8 4s4-4 8-4M4 16c4 0 4-4 8-4s4 4 8 4"/></svg><span data-lang="en">Level: <strong>Beginner</strong></span><span data-lang="hi" style="display:none;">स्तर: <strong>शुरुआती</strong></span></div>
+        <div class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span data-lang="en">Duration: <strong>30–60 sec each side</strong></span><span data-lang="hi" style="display:none;">अवधि: <strong>हर तरफ़ 30–60 सेकंड</strong></span></div>
+        <div class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21s7-4.5 9.5-9C15.5 8.5 13 4 9 4C5 4 2.5 8.5 4.5 12 7 16.5 4 21 4 21z"/></svg><span data-lang="en">Focus: <strong>Balance & Focus</strong></span><span data-lang="hi" style="display:none;">फोकस: <strong>संतुलन और ध्यान</strong></span></div>
+        <div class="meta-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg><span data-lang="en">Category: <strong>Standing</strong></span><span data-lang="hi" style="display:none;">श्रेणी: <strong>खड़े होकर</strong></span></div>
+    </div>
+</div>
+ 
+<!-- Detail Content -->
+<div class="detail-wrap">
+    <div class="detail-main">
+ 
+        <section>
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+                <span data-lang="en">About This Pose</span>
+                <span data-lang="hi" style="display:none;">इस आसन के बारे में</span>
+            </h2>
+            <p data-lang="en">Vrikshasana, or Tree Pose, is one of the most recognizable balance poses in yoga. Standing on one leg with the other foot pressed against the standing thigh or calf, arms reaching upward like branches, this pose builds not just physical balance but also mental concentration and a quiet, rooted steadiness.</p>
+            <p data-lang="hi" style="display:none;">वृक्षासन, या पेड़ मुद्रा, योग की सबसे पहचानी जाने वाली संतुलन मुद्राओं में से एक है। एक पैर पर खड़े होकर दूसरे पैर को खड़े पैर की जांघ या पिंडली पर दबाकर, हाथों को शाखाओं की तरह ऊपर उठाकर, यह मुद्रा केवल शारीरिक संतुलन ही नहीं बल्कि मानसिक एकाग्रता और एक शांत, स्थिर दृढ़ता भी बनाती है।</p>
+        </section>
+ 
+        <section>
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18l6-6-6-6"/></svg>
+                <span data-lang="en">How to Practice</span>
+                <span data-lang="hi" style="display:none;">अभ्यास कैसे करें</span>
+            </h2>
+            <ul class="step-list">
+                <li><span data-lang="en">Stand tall in Tadasana, then shift your weight onto your left foot.</span><span data-lang="hi" style="display:none;">ताड़ासन में सीधे खड़े हों, फिर वजन बाएं पैर पर लाएं।</span></li>
+                <li><span data-lang="en">Bend your right knee and place the sole of your right foot on your inner left thigh or calf, never on the knee joint.</span><span data-lang="hi" style="display:none;">दायाँ घुटना मोड़ें और दाहिने पैर का तलवा बाईं जांघ या पिंडली के अंदर रखें, घुटने के जोड़ पर कभी नहीं।</span></li>
+                <li><span data-lang="en">Bring your palms together at your chest in prayer position, or raise your arms overhead.</span><span data-lang="hi" style="display:none;">हथेलियों को छाती के सामने जोड़ें, या हाथों को सिर के ऊपर उठाएं।</span></li>
+                <li><span data-lang="en">Fix your gaze on a still point ahead to help maintain balance.</span><span data-lang="hi" style="display:none;">संतुलन बनाए रखने के लिए सामने किसी स्थिर बिंदु पर नज़र टिकाएं।</span></li>
+                <li><span data-lang="en">Hold for 30–60 seconds, then release and repeat on the other side.</span><span data-lang="hi" style="display:none;">30–60 सेकंड तक बने रहें, फिर छोड़ें और दूसरी तरफ़ दोहराएं।</span></li>
+            </ul>
+        </section>
+ 
+        <section>
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.5 7.5 3 3 7 3c2 0 3.5 1.5 5 3.5C13.5 4.5 15 3 17 3c4 0 6.5 4.5 4.5 9-2.5 4.5-9.5 9-9.5 9z"/></svg>
+                <span data-lang="en">Benefits</span>
+                <span data-lang="hi" style="display:none;">लाभ</span>
+            </h2>
+            <ul class="benefit-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-lang="en">Improves balance and stability</span><span data-lang="hi" style="display:none;">संतुलन और स्थिरता सुधारता है</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-lang="en">Strengthens ankles, calves, and thighs</span><span data-lang="hi" style="display:none;">टखनों, पिंडलियों और जांघों को मज़बूत करता है</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-lang="en">Improves concentration and mental focus</span><span data-lang="hi" style="display:none;">एकाग्रता और मानसिक ध्यान सुधारता है</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-lang="en">Opens the hips of the bent leg</span><span data-lang="hi" style="display:none;">मुड़े हुए पैर के कूल्हे को खोलता है</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-lang="en">Builds a calm, grounded mental state</span><span data-lang="hi" style="display:none;">शांत, स्थिर मानसिक स्थिति बनाता है</span></li>
+            </ul>
+        </section>
+ 
+        <section class="precaution-box">
+            <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 9v4M12 17h.01M10.3 3.9L2.4 18a1.8 1.8 0 001.5 2.7h16.2a1.8 1.8 0 001.5-2.7L13.7 3.9a1.8 1.8 0 00-3.4 0z"/></svg>
+                <span data-lang="en">Precautions</span>
+                <span data-lang="hi" style="display:none;">सावधानियाँ</span>
+            </h2>
+            <ul>
+                <li><span data-lang="en">Never rest the foot directly on the knee joint — this can strain the ligaments.</span><span data-lang="hi" style="display:none;">पैर को कभी सीधे घुटने के जोड़ पर न रखें — इससे स्नायुबंधन पर दबाव पड़ सकता है।</span></li>
+                <li><span data-lang="en">Practice near a wall if balance is difficult at first.</span><span data-lang="hi" style="display:none;">अगर शुरुआत में संतुलन मुश्किल हो तो दीवार के पास अभ्यास करें।</span></li>
+                <li><span data-lang="en">Avoid if you have a recent ankle or knee injury.</span><span data-lang="hi" style="display:none;">हाल में टखने या घुटने में चोट हो तो इसे टालें।</span></li>
+            </ul>
+        </section>
+ 
+    </div>
+ 
+    <div class="detail-side">
+        <div class="side-card">
+            <h3 data-lang="en">Variations</h3>
+            <h3 data-lang="hi" style="display:none;">विविधताएँ</h3>
+            <div class="variation-item"><span class="variation-dot"></span><span data-lang="en">Tree Pose with foot at ankle for beginners</span><span data-lang="hi" style="display:none;">शुरुआती लोगों के लिए पैर को टखने पर रखकर वृक्षासन</span></div>
+            <div class="variation-item"><span class="variation-dot"></span><span data-lang="en">Eyes closed for a deeper balance challenge</span><span data-lang="hi" style="display:none;">गहरी संतुलन चुनौती के लिए आंखें बंद करके</span></div>
+            <div class="variation-item"><span class="variation-dot"></span><span data-lang="en">Arms overhead with palms together</span><span data-lang="hi" style="display:none;">हाथ ऊपर उठाकर हथेलियाँ जोड़कर</span></div>
+        </div>
+        <div class="side-card">
+            <h3 data-lang="en">More Standing Poses</h3>
+            <h3 data-lang="hi" style="display:none;">और खड़े होकर आसन</h3>
+            <a href="tadasana.html" class="related-pose"><img src="Tadasana - Copy.jpg" alt="Tadasana"><span data-lang="en">Mountain Pose</span><span data-lang="hi" style="display:none;">ताड़ासन</span></a>
+            <a href="trikonasana.html" class="related-pose"><img src="trikon assan - Copy.jpg" alt="Trikonasana"><span data-lang="en">Triangle Pose</span><span data-lang="hi" style="display:none;">त्रिकोणासन</span></a>
+            <a href="virabhadrasana.html" class="related-pose"><img src="virabhadrasana - Copy.webp" alt="Virabhadrasana"><span data-lang="en">Warrior Pose</span><span data-lang="hi" style="display:none;">वीरभद्रासन</span></a>
+        </div>
+        <a href="standing.html" class="btn" style="justify-content:center;" data-lang="en">← Back to Standing Yoga</a>
+        <a href="standing.html" class="btn" style="justify-content:center;display:none;" data-lang="hi">← खड़े होकर योग पर वापस जाएँ</a>
+    </div>
+</div>
+ 
+<footer>© 2026 Yoga Wellness | All Rights Reserved</footer>
+ 
+<script>
+/* Sticky nav shrink */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+});
+ 
+/* Dark / Light mode — synced with main site via localStorage */
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('yw-theme');
+const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+if(initialTheme === 'light'){
+    document.body.setAttribute('data-theme','light');
+}
+themeToggle.addEventListener('click', () => {
+    const isLight = document.body.getAttribute('data-theme') === 'light';
+    if(isLight){
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('yw-theme','dark');
+    } else {
+        document.body.setAttribute('data-theme','light');
+        localStorage.setItem('yw-theme','light');
+    }
+});
+ 
+/* Language toggle — English / Hindi, synced with main site via localStorage */
+const langButtons = document.querySelectorAll('.lang-toggle button');
+const langEls = document.querySelectorAll('[data-lang]');
+ 
+function applyLang(lang){
+    langEls.forEach(el => {
+        if(el.closest('.lang-toggle')) return;
+        el.style.display = (el.dataset.lang === lang) ? '' : 'none';
+    });
+    langButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    localStorage.setItem('yw-lang', lang);
+}
+ 
+const savedLang = localStorage.getItem('yw-lang') || 'en';
+applyLang(savedLang);
+ 
+langButtons.forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+</script>
+ 
+</body>
+</html>

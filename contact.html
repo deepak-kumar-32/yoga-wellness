@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Yoga Wellness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ 
+<style>
+:root{
+    --bg-deep: #0a0f1e;
+    --bg-panel: #121a2e;
+    --bg-panel-alt: #0e1526;
+    --accent-teal: #38bdf8;
+    --accent-teal-soft: rgba(56,189,248,0.15);
+    --accent-gold: #f6ad37;
+    --accent-gold-soft: rgba(246,173,55,0.15);
+    --text-main: #f1f5f9;
+    --text-muted: #93a1b8;
+    --border-soft: rgba(148,163,184,0.14);
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Poppins', sans-serif;
+    --nav-bg: rgba(10,15,30,0.75);
+    --nav-bg-scrolled: rgba(10,15,30,0.95);
+}
+ 
+body[data-theme="light"]{
+    --bg-deep: #faf7f1;
+    --bg-panel: #ffffff;
+    --bg-panel-alt: #f2ede2;
+    --accent-teal: #0891b2;
+    --accent-teal-soft: rgba(8,145,178,0.12);
+    --accent-gold: #d97706;
+    --accent-gold-soft: rgba(217,119,6,0.12);
+    --text-main: #1e2433;
+    --text-muted: #64708a;
+    --border-soft: rgba(30,36,51,0.12);
+    --nav-bg: rgba(250,247,241,0.8);
+    --nav-bg-scrolled: rgba(250,247,241,0.96);
+}
+ 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+ 
+html{ scroll-behavior:smooth; }
+ 
+body{
+    background:var(--bg-deep);
+    color:var(--text-main);
+    font-family:var(--font-body);
+    transition:background 0.4s ease, color 0.4s ease;
+}
+ 
+h1,h2,.brand{ font-family:var(--font-display); font-weight:600; }
+a{ color:inherit; }
+img{ max-width:100%; display:block; }
+ 
+.eyebrow{
+    display:inline-block;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--accent-gold);
+    margin-bottom:12px;
+    font-weight:600;
+}
+ 
+/* ---------- Navbar ---------- */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 50px;
+    background:var(--nav-bg);
+    backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid var(--border-soft);
+    transition:padding 0.3s ease, background 0.3s ease;
+}
+ 
+nav.scrolled{
+    padding:10px 50px;
+    background:var(--nav-bg-scrolled);
+}
+ 
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:20px;
+    text-decoration:none;
+    color:var(--text-main);
+}
+ 
+.brand span{ color:var(--accent-teal); }
+.brand svg{ width:26px; height:26px; }
+ 
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+ 
+.back-link{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:var(--text-muted);
+    font-size:14px;
+    padding:9px 16px;
+    border-radius:20px;
+    border:1px solid var(--border-soft);
+    transition:0.25s ease;
+}
+ 
+.back-link:hover{
+    color:var(--accent-teal);
+    border-color:var(--accent-teal);
+}
+ 
+.back-link svg{ width:16px; height:16px; }
+ 
+.theme-toggle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--border-soft);
+    background:var(--bg-panel);
+    color:var(--accent-teal);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:border-color 0.25s ease, transform 0.35s ease, background 0.4s ease;
+    flex-shrink:0;
+}
+ 
+.theme-toggle:hover{
+    border-color:var(--accent-teal);
+    transform:rotate(15deg);
+}
+ 
+.theme-toggle svg{ width:19px; height:19px; }
+.theme-toggle .icon-moon{ display:none; }
+body[data-theme="light"] .theme-toggle .icon-sun{ display:none; }
+body[data-theme="light"] .theme-toggle .icon-moon{ display:block; }
+ 
+/* ---------- Language toggle ---------- */
+.lang-toggle{
+    display:flex;
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:20px;
+    padding:3px;
+}
+ 
+.lang-toggle button{
+    border:none;
+    background:transparent;
+    color:var(--text-muted);
+    padding:7px 14px;
+    border-radius:18px;
+    cursor:pointer;
+    font-family:var(--font-body);
+    font-size:13px;
+    font-weight:600;
+    transition:0.25s ease;
+}
+ 
+.lang-toggle button.active{
+    background:var(--accent-teal);
+    color:#04121c;
+}
+ 
+/* ---------- Header ---------- */
+.page-header{
+    text-align:center;
+    padding:80px 24px 60px;
+    background:
+        radial-gradient(circle at 50% 0%, var(--accent-teal-soft), transparent 60%),
+        var(--bg-deep);
+}
+ 
+.page-header h1{
+    font-size:clamp(32px,5vw,52px);
+    margin-bottom:14px;
+}
+ 
+.page-header h1 em{
+    font-style:italic;
+    color:var(--accent-teal);
+}
+ 
+.page-header p{
+    color:var(--text-muted);
+    font-size:17px;
+    max-width:560px;
+    margin:0 auto;
+}
+ 
+/* ---------- Grid Section ---------- */
+.pose-section{
+    padding:20px 50px 90px;
+}
+ 
+.wrapper{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:26px;
+    max-width:1200px;
+    margin:0 auto;
+}
+ 
+.container{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:18px;
+    overflow:hidden;
+    text-align:center;
+    transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    opacity:0;
+    transform:translateY(24px);
+    animation:cardIn 0.6s ease forwards;
+}
+ 
+@keyframes cardIn{
+    to{ opacity:1; transform:translateY(0); }
+}
+ 
+.container:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.28);
+    border-color:var(--accent-teal);
+}
+ 
+.img-wrap{
+    position:relative;
+    height:200px;
+    overflow:hidden;
+}
+ 
+.img-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.5s ease;
+}
+ 
+.container:hover .img-wrap img{
+    transform:scale(1.08);
+}
+ 
+.pose-number{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:rgba(10,15,30,0.65);
+    backdrop-filter:blur(4px);
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    padding:5px 11px;
+    border-radius:20px;
+    letter-spacing:1px;
+}
+ 
+.card-body{
+    padding:20px 18px 24px;
+}
+ 
+.card-body a{
+    display:block;
+    font-size:18px;
+    font-weight:600;
+    text-decoration:none;
+    color:var(--text-main);
+    margin-bottom:8px;
+    transition:color 0.25s ease;
+}
+ 
+.card-body a:hover{
+    color:var(--accent-teal);
+}
+ 
+.card-body .level{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--accent-gold);
+    background:var(--accent-gold-soft);
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:600;
+}
+ 
+/* ---------- Back home ---------- */
+.back-home{
+    display:flex;
+    justify-content:center;
+    padding:0 24px 90px;
+}
+ 
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 30px;
+    background:var(--accent-teal);
+    color:#04121c;
+    border:none;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+ 
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(56,189,248,0.3);
+}
+ 
+/* ---------- Footer ---------- */
+footer{
+    text-align:center;
+    padding:24px;
+    border-top:1px solid var(--border-soft);
+    color:var(--text-muted);
+    font-size:13px;
+    background:var(--bg-panel-alt);
+}
+ 
+/* ---------- Responsive ---------- */
+@media (max-width:768px){
+    nav{ padding:14px 20px; }
+    .pose-section{ padding:20px 20px 70px; }
+    .page-header{ padding:60px 20px 44px; }
+    .brand span.brand-text{ display:none; }
+}
+ 
+/* ---------- Contact Page ---------- */
+.contact-wrap{
+    max-width:1150px;
+    margin:0 auto;
+    padding:20px 50px 90px;
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:50px;
+    align-items:start;
+}
+ 
+.info-cards{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+ 
+.info-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:16px;
+    padding:24px;
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    transition:transform 0.3s ease, border-color 0.3s ease;
+}
+ 
+.info-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent-teal);
+}
+ 
+.info-icon{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--accent-teal-soft);
+    color:var(--accent-teal);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+ 
+.info-icon svg{ width:20px; height:20px; }
+ 
+.info-card h4{
+    font-size:16px;
+    margin-bottom:5px;
+    font-family:var(--font-body);
+    font-weight:600;
+}
+ 
+.info-card p{
+    color:var(--text-muted);
+    font-size:14px;
+    line-height:1.6;
+}
+ 
+.info-card a{
+    text-decoration:none;
+    color:var(--text-muted);
+    transition:color 0.25s ease;
+}
+ 
+.info-card a:hover{
+    color:var(--accent-teal);
+}
+ 
+.hours-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:var(--text-muted);
+    padding:3px 0;
+}
+ 
+.hours-row span:last-child{
+    color:var(--text-main);
+    font-weight:500;
+}
+ 
+.social-row{
+    display:flex;
+    gap:12px;
+    margin-top:6px;
+}
+ 
+.social-row a{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid var(--border-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--text-muted);
+    text-decoration:none;
+    transition:0.25s ease;
+}
+ 
+.social-row a:hover{
+    border-color:var(--accent-teal);
+    color:var(--accent-teal);
+    transform:translateY(-3px);
+}
+ 
+.social-row svg{ width:17px; height:17px; }
+ 
+/* Form panel */
+.form-panel{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:20px;
+    padding:40px;
+}
+ 
+.form-panel h3{
+    font-size:22px;
+    margin-bottom:8px;
+}
+ 
+.form-panel > p{
+    color:var(--text-muted);
+    font-size:14px;
+    margin-bottom:28px;
+}
+ 
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+ 
+.field{
+    margin-bottom:18px;
+}
+ 
+.field label{
+    display:block;
+    font-size:13px;
+    color:var(--text-muted);
+    margin-bottom:7px;
+    font-weight:500;
+}
+ 
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    padding:13px 16px;
+    background:var(--bg-panel-alt);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    color:var(--text-main);
+    font-family:var(--font-body);
+    font-size:14px;
+    outline:none;
+    transition:border-color 0.25s ease;
+}
+ 
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--accent-teal);
+}
+ 
+.field textarea{
+    resize:vertical;
+    min-height:120px;
+}
+ 
+.char-count{
+    text-align:right;
+    font-size:12px;
+    color:var(--text-muted);
+    margin-top:4px;
+}
+ 
+.submit-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-top:8px;
+}
+ 
+.form-msg{
+    font-size:14px;
+    color:var(--accent-teal);
+    opacity:0;
+    transition:opacity 0.3s ease;
+}
+ 
+.form-msg.show{ opacity:1; }
+ 
+.field.error input,
+.field.error textarea{
+    border-color:#f87171;
+}
+ 
+.field-error{
+    font-size:12px;
+    color:#f87171;
+    margin-top:5px;
+    display:none;
+}
+ 
+.field.error .field-error{ display:block; }
+ 
+/* Map */
+.map-wrap{
+    margin-top:30px;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--border-soft);
+    height:260px;
+}
+ 
+.map-wrap iframe{
+    width:100%;
+    height:100%;
+    border:0;
+    filter:grayscale(0.3) contrast(1.05);
+}
+ 
+body[data-theme="light"] .map-wrap iframe{
+    filter:none;
+}
+ 
+@media (max-width:900px){
+    .contact-wrap{ grid-template-columns:1fr; padding:20px 24px 70px; }
+    .form-row{ grid-template-columns:1fr; }
+    .form-panel{ padding:26px; }
+}
+</style>
+ 
+</head>
+<body>
+ 
+<!-- Navbar -->
+<nav id="navbar">
+    <a href="index.html" class="brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2.4"/><path d="M12 8.4v4.2M12 12.6l-5 6M12 12.6l5 6M7 15h10"/></svg>
+        <span class="brand-text">Yoga<span>Wellness</span></span>
+    </a>
+ 
+    <div class="nav-actions">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span data-lang="en">Back to Home</span>
+            <span data-lang="hi" style="display:none;">होम पर जाएँ</span>
+        </a>
+        <div class="lang-toggle">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="hi">हिं</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1110.2 4a6.8 6.8 0 009.8 10.5z"/></svg>
+        </button>
+    </div>
+</nav>
+ 
+<!-- Header -->
+<div class="page-header">
+    <span class="eyebrow" data-lang="en">We're Here to Help</span>
+    <span class="eyebrow" data-lang="hi" style="display:none;">हम मदद के लिए यहाँ हैं</span>
+    <h1 data-lang="en">Get In <em>Touch</em></h1>
+    <h1 data-lang="hi" style="display:none;">हमसे <em>संपर्क</em> करें</h1>
+    <p data-lang="en">Questions about classes, styles, or membership? Send us a message and we'll reply within 24 hours.</p>
+    <p data-lang="hi" style="display:none;">क्लासेस, स्टाइल्स या मेंबरशिप के बारे में सवाल हैं? हमें संदेश भेजें, हम 24 घंटे में जवाब देंगे।</p>
+</div>
+ 
+<!-- Contact Content -->
+<div class="contact-wrap">
+ 
+    <div class="info-cards">
+ 
+        <div class="info-card">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5a2 2 0 012-2h3l2 5-2 1a11 11 0 006 6l1-2 5 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg>
+            </div>
+            <div>
+                <h4 data-lang="en">Call Us</h4>
+                <h4 data-lang="hi" style="display:none;">हमें कॉल करें</h4>
+                <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                <p data-lang="en" style="font-size:12px;margin-top:4px;">Mon – Sat, 7am – 8pm</p>
+                <p data-lang="hi" style="display:none;font-size:12px;margin-top:4px;">सोम – शनि, सुबह 7 – रात 8</p>
+            </div>
+        </div>
+ 
+        <div class="info-card">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l9 7 9-7M3 6h18v12H3z"/></svg>
+            </div>
+            <div>
+                <h4 data-lang="en">Email Us</h4>
+                <h4 data-lang="hi" style="display:none;">हमें ईमेल करें</h4>
+                <p><a href="mailto:hello@yogawellness.com">hello@yogawellness.com</a></p>
+                <p data-lang="en" style="font-size:12px;margin-top:4px;">We reply within 24 hours</p>
+                <p data-lang="hi" style="display:none;font-size:12px;margin-top:4px;">हम 24 घंटे में जवाब देते हैं</p>
+            </div>
+        </div>
+ 
+        <div class="info-card">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            </div>
+            <div>
+                <h4 data-lang="en">Visit the Studio</h4>
+                <h4 data-lang="hi" style="display:none;">स्टूडियो पर आएं</h4>
+               <p data-lang="en">Government Engineering College, Siwan, Bihar, India</p>
+                <p data-lang="hi" style="display:none;">राजकीय अभियंत्रण महाविद्यालय, सिवान, बिहार, </p>
+            </div>
+        </div>
+ 
+        <div class="info-card">
+            <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </div>
+            <div style="width:100%;">
+                <h4 data-lang="en">Studio Hours</h4>
+                <h4 data-lang="hi" style="display:none;">स्टूडियो समय</h4>
+                <div class="hours-row"><span data-lang="en">Mon – Fri</span><span data-lang="hi" style="display:none;">सोम – शुक्र</span><span>6:00 AM – 8:00 PM</span></div>
+                <div class="hours-row"><span data-lang="en">Saturday</span><span data-lang="hi" style="display:none;">शनिवार</span><span>7:00 AM – 6:00 PM</span></div>
+                <div class="hours-row"><span><span data-lang="en">Sunday</span><span data-lang="hi" style="display:none;">रविवार</span></span><span><span data-lang="en">Closed</span><span data-lang="hi" style="display:none;">बंद</span></span></div>
+                <div class="social-row">
+                    <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+                    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 9h3V6h-3a4 4 0 00-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 011-1z"/></svg></a>
+                    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></a>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="map-wrap">
+            <iframe src="https://www.google.com/maps?q=GEC SIWAN,Bihar,India&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Studio location map"></iframe>
+        </div>
+ 
+    </div>
+ 
+    <div class="form-panel">
+        <h3 data-lang="en">Send a Message</h3>
+        <h3 data-lang="hi" style="display:none;">संदेश भेजें</h3>
+        <p data-lang="en">Fill in the form and our team will get back to you shortly.</p>
+        <p data-lang="hi" style="display:none;">फॉर्म भरें, हमारी टीम जल्द ही आपसे संपर्क करेगी।</p>
+ 
+        <form id="contactForm" novalidate>
+            <div class="form-row">
+                <div class="field" id="fieldName">
+                    <label data-lang="en">Full Name</label>
+                    <label data-lang="hi" style="display:none;">पूरा नाम</label>
+                    <input type="text" id="cName" placeholder="Your name">
+                    <span class="field-error" data-lang="en">Please enter your name</span>
+                    <span class="field-error" data-lang="hi" style="display:none;">कृपया अपना नाम दर्ज करें</span>
+                </div>
+                <div class="field" id="fieldPhone">
+                    <label data-lang="en">Phone Number</label>
+                    <label data-lang="hi" style="display:none;">फोन नंबर</label>
+                    <input type="tel" id="cPhone" placeholder="+91 00000 00000">
+                </div>
+            </div>
+ 
+            <div class="field" id="fieldEmail">
+                <label data-lang="en">Email Address</label>
+                <label data-lang="hi" style="display:none;">ईमेल पता</label>
+                <input type="email" id="cEmail" placeholder="you@example.com">
+                <span class="field-error" data-lang="en">Please enter a valid email</span>
+                <span class="field-error" data-lang="hi" style="display:none;">कृपया सही ईमेल दर्ज करें</span>
+            </div>
+ 
+            <div class="field">
+                <label data-lang="en">I'm Interested In</label>
+                <label data-lang="hi" style="display:none;">मुझे रुचि है</label>
+                <select id="cInterest">
+                    <option>General Inquiry</option>
+                    <option>Class Schedule</option>
+                    <option>Membership Pricing</option>
+                    <option>Private Sessions</option>
+                </select>
+            </div>
+ 
+            <div class="field" id="fieldMessage">
+                <label data-lang="en">Message</label>
+                <label data-lang="hi" style="display:none;">संदेश</label>
+                <textarea id="cMessage" maxlength="400" placeholder="Tell us a little about what you're looking for..."></textarea>
+                <div class="char-count"><span id="charCount">0</span>/400</div>
+                <span class="field-error" data-lang="en">Please write a short message</span>
+                <span class="field-error" data-lang="hi" style="display:none;">कृपया एक संक्षिप्त संदेश लिखें</span>
+            </div>
+ 
+            <div class="submit-row">
+                <button type="submit" class="btn" data-lang="en">Send Message</button>
+                <button type="submit" class="btn" data-lang="hi" style="display:none;">संदेश भेजें</button>
+                <span class="form-msg" id="formMsg" data-lang="en">Thanks! We'll be in touch soon.</span>
+                <span class="form-msg" id="formMsgHi" data-lang="hi" style="display:none;">धन्यवाद! हम जल्द संपर्क करेंगे।</span>
+            </div>
+        </form>
+    </div>
+ 
+</div>
+ 
+<footer>© 2026 Yoga Wellness | All Rights Reserved</footer>
+ 
+<script>
+/* Sticky nav shrink */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+});
+ 
+/* Dark / Light mode — synced with main site via localStorage */
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('yw-theme');
+const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+if(initialTheme === 'light'){
+    document.body.setAttribute('data-theme','light');
+}
+themeToggle.addEventListener('click', () => {
+    const isLight = document.body.getAttribute('data-theme') === 'light';
+    if(isLight){
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('yw-theme','dark');
+    } else {
+        document.body.setAttribute('data-theme','light');
+        localStorage.setItem('yw-theme','light');
+    }
+});
+ 
+/* Language toggle — English / Hindi, synced with main site via localStorage */
+const langButtons = document.querySelectorAll('.lang-toggle button');
+const langEls = document.querySelectorAll('[data-lang]');
+ 
+function applyLang(lang){
+    langEls.forEach(el => {
+        if(el.closest('.lang-toggle')) return;
+        el.style.display = (el.dataset.lang === lang) ? '' : 'none';
+    });
+    langButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    localStorage.setItem('yw-lang', lang);
+}
+ 
+const savedLang = localStorage.getItem('yw-lang') || 'en';
+applyLang(savedLang);
+ 
+langButtons.forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+});
+ 
+/* ---------- Contact form ---------- */
+const cName = document.getElementById('cName');
+const cEmail = document.getElementById('cEmail');
+const cMessage = document.getElementById('cMessage');
+const charCount = document.getElementById('charCount');
+const contactForm = document.getElementById('contactForm');
+ 
+cMessage.addEventListener('input', () => {
+    charCount.textContent = cMessage.value.length;
+});
+ 
+function setError(fieldId, hasError){
+    document.getElementById(fieldId).classList.toggle('error', hasError);
+}
+ 
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+ 
+    const nameValid = cName.value.trim().length > 1;
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cEmail.value.trim());
+    const messageValid = cMessage.value.trim().length > 4;
+ 
+    setError('fieldName', !nameValid);
+    setError('fieldEmail', !emailValid);
+    setError('fieldMessage', !messageValid);
+ 
+    if(!nameValid || !emailValid || !messageValid) return;
+ 
+    const activeLang = localStorage.getItem('yw-lang') || 'en';
+    const msgEl = activeLang === 'hi' ? document.getElementById('formMsgHi') : document.getElementById('formMsg');
+    msgEl.classList.add('show');
+    contactForm.reset();
+    charCount.textContent = '0';
+ 
+    setTimeout(() => msgEl.classList.remove('show'), 4000);
+});
+</script>
+ 
+</body>
+</html>
+ 
